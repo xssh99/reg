@@ -52,6 +52,9 @@ read -p "Limit User (IP): " iplim
 echo > /etc/cron.d/kills
                 echo "# $user" >>/etc/cron.d/kills
                 echo "*/1 * * * *  root /usr/bin/kills $iplim" >>/etc/cron.d/kills
+                echo -e ""
+                service cron restart >/dev/null 2>&1
+                service cron reload >/dev/null 2>&1
 done
 IP=$(curl -sS ifconfig.me)
 CITY=$(cat /etc/xray/city)
